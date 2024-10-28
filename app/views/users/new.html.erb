@@ -1,0 +1,93 @@
+<div class="wrapper">
+<%= form_with(model: @user, local: true, class: "register-form") do |form| %>
+    <% if @user && @user.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <h2>Register</h2>
+
+    <div class="input-field">
+      <%= form.text_field :username, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your username</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.password_field :password, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your password</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.password_field :password_confirmation, required: true, class: "form-input", placeholder: "" %>
+      <label>Confirm your password</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.email_field :email, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your email</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.text_field :role, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your role</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.text_field :first_name, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your first name</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.text_field :last_name, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your last name</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.text_field :address, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your address</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.text_field :phone_number, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your phone number</label>
+    </div>
+
+
+
+    <label style="color: white">Select Date of Birth:</label>
+    <div class="input-field" style="margin-bottom:2px">
+      
+      <div>
+        <%= form.date_select :date_of_birth, start_year: 1950, end_year: Time.now.year, required: true, class: "form-input" %>
+      </div>
+    </div>
+
+    <div class="input-field">
+      <%= form.text_field :nationality, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your nationality</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.text_field :gender, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your gender</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.text_field :student_grade_level, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your grade level</label>
+    </div>
+
+    <div class="input-field">
+      <%= form.text_field :student_course_enrolled, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your course</label>
+    </div>
+
+    <button type="submit">Register</button>
+  <% end %>
+</div>

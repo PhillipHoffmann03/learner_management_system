@@ -1,0 +1,35 @@
+
+
+<div class="wrapper">
+  <%= form_with(url: sessions_path, local: true, class: "login-form") do |form| %>
+    
+    <h2>Login</h2>
+
+    
+    <div class="input-field">
+      <%= form.text_field :username, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your username</label>
+    </div>
+
+
+
+    <div class="input-field">
+      <%= form.password_field :password, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your password</label>
+    </div>
+
+    <div class="forget">
+      <label for="remember">
+        <%= check_box_tag :remember_me %>
+        <p>Remember me</p>
+      </label>
+      <%= link_to "Forgot password?", "#" %>
+    </div>
+
+    <button type="submit">Log In</button>
+
+    <div class="register">
+      <p>Don't have an account? <%= link_to "Register", new_user_path %></p>
+    </div>
+  <% end %>
+</div>

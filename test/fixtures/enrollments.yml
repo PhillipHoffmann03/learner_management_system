@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: 1
+  course_id: 1
+  status: MyString
+  enrolled_at: 2024-10-20 10:35:06
+
+two:
+  student_id: 1
+  course_id: 1
+  status: MyString
+  enrolled_at: 2024-10-20 10:35:06

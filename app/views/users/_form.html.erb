@@ -1,0 +1,71 @@
+<%= form_with(model: @user, local: true) do |form| %>
+  
+  <div>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :role %>
+    <%= form.text_field :role %>
+  </div>
+
+  <div>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div>
+    <%= form.label :date_of_birth %>
+    <%= form.date_select :date_of_birth %>
+  </div>
+
+  <div>
+    <%= form.label :nationality %>
+    <%= form.text_field :nationality %>
+  </div>
+
+  <div>
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div>
+    <%= form.label :student_grade_level %>
+    <%= form.text_field :student_grade_level %>
+  </div>
+
+  <div>
+    <%= form.label :student_course_enrolled %>
+    <%= form.text_field :student_course_enrolled %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

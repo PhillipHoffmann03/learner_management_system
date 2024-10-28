@@ -1,0 +1,41 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: phillip
+  password: 031198
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: lms
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: phillip
+  password: 031198
+  host: localhost
+  port: 5432
+
+test:
+  <<: *default
+  database: lms
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: phillip
+  password: 031198
+  host: localhost
+  port: 5432
+
+production:
+  <<: *default
+  database: lms
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: 031198
+  host: phillip
+  port: 5432
