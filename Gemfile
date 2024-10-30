@@ -56,6 +56,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
+#Postgresql gem dependency to ensure connection with database and that active directory works as intended 
 gem "pg"
 
+#bcrypt dependency to ensure password hashing when creating a new user. Also used to retreive password and decrypt to allow login to site.
 gem 'bcrypt', '~> 3.1.7'

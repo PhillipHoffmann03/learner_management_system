@@ -1,0 +1,121 @@
+
+    /* Basic Reset and Theme */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #ffffff;
+      color: #333;
+      align-items: center;
+    }
+
+    /* Header */
+    .header {
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+    }
+
+    .logo hr {
+      margin-top: 10px;
+      width: 100%;
+      border: 1px solid #ffffff;
+    }
+
+    /* Logout button */
+    .logout {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #333;
+      text-decoration: none;
+      background: #d9534f;
+      padding: 4px 6px;
+      border-radius: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Bubbles for navigation */
+    .bubbles {
+        
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 50px;
+      margin: 30px 0;
+    }
+
+    .bubble {
+      margin-left: 50px;
+      margin-right: 50px;
+      background-color: #88959c;
+      color: #333;
+      width: 150px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+
+    .bubble:hover {
+      background-color: #bbb;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #88959c;
+      color: #ffffff;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      position: absolute;
+      bottom: 0;
+    }
+
+    /*Styling my flash message*/
+    .flash-notice {
+        position: relative;
+        background-color: #f9fff9;
+        border: 1px solid #b2f2b2;
+        padding: 10px;
+        margin: 20px 0;
+        border-radius: 5px;
+      }
+      
+      .flash-notice .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+        color: #999;
+        font-weight: bold;
+      }
+      

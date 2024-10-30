@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <%= stylesheet_link_tag 'dashboard', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <!-- Header with Logo and Logout -->
+  <header class="header">
+    <div class="logo">
+      <img src="/assets/lsmlogo.png" alt="Logo">
+      <hr>
+    </div>
+
+    <!-- Quick Navigation Links -->
+  <div class="dashboard-navigation">
+    <a href="<%= courses_path %>">Courses</a> |
+    <a href="<%= attendances_path %>">Attendance</a> |
+    <a href="<%= grades_path %>">Grades</a> 
+    
+  </div>
+
+  
+    <%= button_to 'Logout', logout_path, method: :delete, class: 'logout' %>
+    
+  </header>
+  <hr style="width:90%;text-align:left;margin-left:0">
+
+  <% if flash[:notice] %>
+  <div class="flash-notice" id="flash-notice">
+    <p style="color: green;"><%= flash[:notice] %></p>
+    <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+  </div>
+
+  <script>
+    // Automatically dismiss the flash message after 5 seconds
+    setTimeout(function() {
+      var flashNotice = document.getElementById("flash-notice");
+      if (flashNotice) {
+        flashNotice.style.display = 'none';
+      }
+    }, 5000); // 5000 milliseconds = 5 seconds
+  </script>
+<% end %>
+
+  
+
+
+ <div class="dashboard-container">
+  <h1>Welcome to Your Dashboard, <%= current_user.first_name + " " + current_user.last_name %>!</h1>
+  
+  <!-- Courses Overview Section -->
+  <section class="dashboard-section">
+    <h2>Your Courses</h2>
+    <% if @courses.present? %>
+      <ul>
+        <% @courses.each do |course| %>
+          <li><%= course.title %>: <%= course.description %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>You are currently not enrolled in any courses. Plese contact your student adminstrator.</p>
+    <% end %>
+  </section>
+  
+  <!-- Attendance Summary Section -->
+  <section class="dashboard-section">
+    <h2>Attendance Overview</h2>
+    <% if @attendance.present? %>
+      <p>Attendance Percentage: <%= @attendance.average(:status) %> %</p>
+    <% else %>
+      <p>No attendance records available. Plese contact your student adminstrator.</p>
+    <% end %>
+  </section>
+  
+  <!-- Grades Overview Section -->
+  <section class="dashboard-section">
+    <h2>Grades</h2>
+    <% if @grades.present? %>
+      <ul>
+        <% @grades.each do |grade| %>
+          <li><%= grade.course.title %>: <%= grade.grade_value %> %</li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No grades currently available.</p>
+    <% end %>
+  </section>
+
+  <!-- Notifications or Updates -->
+  <section class="dashboard-section">
+    <h2>Important Notifications</h2>
+    <p>Any recent updates or alerts will go here.</p>
+  </section>
+
+  
+</div>
+
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    402200309
+  </footer>
+</body>
+</html>

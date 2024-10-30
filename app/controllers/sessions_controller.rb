@@ -1,22 +1,26 @@
+# app/controllers/sessions_controller.rb
 class SessionsController < ApplicationController
   def new
-    @user = User.new
+    # Renders the login form
   end
 
   def create
-    @user = User.find_by(username: params[:username])
-
-    if @user&.authenticate(params[:password]) # Use bcrypt's authenticate method
-      session[:user_id] = @user.id # Store user ID in session
-      redirect_to root_path, notice: 'Logged in successfully.'
+    # Find the user by username
+    user = User.find_by(username: params[:username])
+    
+    # Authenticate the user and check if the password matches
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id  # Store user ID in session to keep them logged in
+      redirect_to dashboard_path, notice: "Logged in successfully!"  # Redirect to dashboard on success
     else
-      flash.now[:alert] = 'Invalid username or password.'
-      render :new # Re-render the login form
+      flash[:alert] = "Invalid username or password"
+      render :new  # Render login form again if authentication fails
     end
   end
+  
 
   def destroy
-    session[:user_id] = nil # Clear the session
-    redirect_to root_path, notice: 'Logged out successfully.'
+    session[:user_id] = nil  # Log out the user by clearing the session
+    redirect_to login_path, notice: "Logged out successfully!"
   end
 end
