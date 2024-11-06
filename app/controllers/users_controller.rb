@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+  # In your UsersController or relevant controller
   def new
     @user = User.new
+    @courses = Course.all.pluck(:title, :id) # Fetching course titles and their corresponding IDs
   end
+
 
   def create
     @user = User.new(user_params)

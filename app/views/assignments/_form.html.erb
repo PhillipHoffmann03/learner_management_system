@@ -1,8 +1,8 @@
-<%= form_with(model: assignment) do |form| %>
-  <% if assignment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+<%= form_with(model: assignment, class: 'assignment-form') do |form| %>
 
+  <% if assignment.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
       <ul>
         <% assignment.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,57 +11,57 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :course_id, style: "display: block" %>
-    <%= form.number_field :course_id %>
+  <div class="form-group">
+    <%= form.label :course_id, class: 'form-label' %>
+    <%= form.number_field :course_id, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :assignment_1, style: "display: block" %>
-    <%= form.text_field :assignment_1 %>
+  <div class="form-group">
+    <%= form.label :assignment_1, class: 'form-label' %>
+    <%= form.text_field :assignment_1, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :assignment_2, style: "display: block" %>
-    <%= form.text_field :assignment_2 %>
+  <div class="form-group">
+    <%= form.label :assignment_2, class: 'form-label' %>
+    <%= form.text_field :assignment_2, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :assignment_3, style: "display: block" %>
-    <%= form.text_field :assignment_3 %>
+  <div class="form-group">
+    <%= form.label :assignment_3, class: 'form-label' %>
+    <%= form.text_field :assignment_3, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :exam, style: "display: block" %>
-    <%= form.text_field :exam %>
+  <div class="form-group">
+    <%= form.label :exam, class: 'form-label' %>
+    <%= form.text_field :exam, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :test, style: "display: block" %>
-    <%= form.text_field :test %>
+  <div class="form-group">
+    <%= form.label :test, class: 'form-label' %>
+    <%= form.text_field :test, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :due_date, style: "display: block" %>
-    <%= form.datetime_field :due_date %>
+  <div class="form-group">
+    <%= form.label :due_date, class: 'form-label' %>
+    <%= form.datetime_field :due_date, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :created_at, style: "display: block" %>
-    <%= form.datetime_field :created_at %>
+  <div class="form-group">
+    <%= form.label :created_at, class: 'form-label' %>
+    <%= form.datetime_field :created_at, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= form.submit 'Create Assignment', class: 'btn-submit' %>
   </div>
 <% end %>

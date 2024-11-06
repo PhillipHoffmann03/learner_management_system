@@ -45,16 +45,14 @@
 
     /* Logout button */
     .logout {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: #333;
-      text-decoration: none;
-      background: #d9534f;
-      padding: 4px 6px;
-      border-radius: 15px;
-      font-weight: bold;
-      cursor: pointer;
+      display: inline-block;
+    padding: 8px 12px;
+    color: #000000;
+    background-color: #e74c3c;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
     }
 
     /* Bubbles for navigation */
@@ -91,7 +89,7 @@
 
     /* Footer */
     .footer {
-      background-color: #88959c;
+      background-color: #6fa6ec;
       color: #ffffff;
       width: 100%;
       text-align: center;

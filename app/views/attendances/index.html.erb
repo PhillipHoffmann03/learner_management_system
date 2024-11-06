@@ -1,16 +1,39 @@
-<p style="color: green"><%= notice %></p>
-
+<%= render "layouts/header" %>
 <% content_for :title, "Attendances" %>
+<div class="container">
+  <h1 class="table-heading">Attendances</h1>
 
-<h1>Attendances</h1>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Course ID</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @attendances.each do |attendance| %>
+          <tr id="<%= dom_id(attendance) %>">
 
-<div id="attendances">
-  <% @attendances.each do |attendance| %>
-    <%= render attendance %>
-    <p>
-      <%= link_to "Show this attendance", attendance %>
-    </p>
-  <% end %>
+            <td><%= User.find(attendance.user_id).first_name + " " + User.find(attendance.user_id).last_name %></td>
+            <td><%= Course.find(attendance.course_id).title %></td>
+            <td><%= attendance.date %></td>
+            <td><%= attendance.status %></td>
+            <td>
+              <%= link_to 'Show', attendance_path(attendance), class: 'btn-action' %>
+              <%= link_to 'Edit', edit_attendance_path(attendance), class: 'btn-action btn-warning' %>
+              <%= link_to 'Delete', attendance_path(attendance), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-action btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= link_to 'New Attendance', new_attendance_path, class: 'btn-action btn-primary' %>
 </div>
 
-<%= link_to "New attendance", new_attendance_path %>
+<%= render "layouts/footer" %>

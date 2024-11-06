@@ -1,16 +1,36 @@
-<p style="color: green"><%= notice %></p>
-
+<%= render "layouts/header" %>
 <% content_for :title, "Grades" %>
+<div class="container">
+  <h1 class="table-heading">Grades</h1>
 
-<h1>Grades</h1>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Course ID</th>
+          <th>Grade Value</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @grades.each do |grade| %>
+          <tr id="<%= dom_id(grade) %>">
+            <td><%= User.find(grade.user_id).first_name + " " + User.find(grade.user_id).first_name %></td>
+            <td><%= Course.find(grade.course_id).title + " - " + Course.find(grade.course_id).description %></td>
+            <td><%= grade.grade_value %></td>
+            <td>
+              <%= link_to 'Show', grade_path(grade), class: 'btn-action' %>
+              <%= link_to 'Edit', edit_grade_path(grade), class: 'btn-action btn-warning' %>
+              <%= link_to 'Delete', grade_path(grade), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-action btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<div id="grades">
-  <% @grades.each do |grade| %>
-    <%= render grade %>
-    <p>
-      <%= link_to "Show this grade", grade %>
-    </p>
-  <% end %>
+  <%= link_to 'New Grade', new_grade_path, class: 'btn-action btn-primary' %>
 </div>
 
-<%= link_to "New grade", new_grade_path %>
+<%= render "layouts/footer" %>

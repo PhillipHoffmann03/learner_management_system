@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_29_120828) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_05_110309) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,61 +26,66 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_120828) do
     t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_assignments_on_course_id"
   end
 
   create_table "attendances", force: :cascade do |t|
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.bigint "course_id", null: false
     t.date "date"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_attendances_on_course_id"
-    t.index ["users_id"], name: "index_attendances_on_users_id"
+    t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "instructor_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "enrollments", force: :cascade do |t|
-    t.integer "student_id"
+    t.integer "user_id"
     t.integer "course_id"
     t.string "status"
-    t.datetime "enrolled_at", precision: nil
+    t.datetime "enrolled_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
   create_table "grades", force: :cascade do |t|
-    t.integer "student_id"
+    t.integer "user_id"
     t.integer "course_id"
     t.decimal "grade_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_grades_on_course_id"
+    t.index ["user_id"], name: "index_grades_on_user_id"
   end
 
   create_table "submissions", force: :cascade do |t|
     t.integer "assignment_id"
-    t.integer "student_id"
-    t.datetime "submission_date", precision: nil
+    t.integer "user_id"
+    t.datetime "submission_date"
     t.decimal "grade"
     t.text "feedback"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["assignment_id"], name: "index_submissions_on_assignment_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "email"
     t.string "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
     t.string "address"
@@ -90,9 +95,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_120828) do
     t.string "gender"
     t.string "student_grade_level"
     t.string "student_course_enrolled"
-    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "attendances", "courses"
-  add_foreign_key "attendances", "users", column: "users_id"
+  add_foreign_key "attendances", "users"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
+  add_foreign_key "grades", "courses"
+  add_foreign_key "grades", "users"
+  add_foreign_key "submissions", "assignments"
+  add_foreign_key "submissions", "users"
 end

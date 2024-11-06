@@ -1,16 +1,42 @@
-<p style="color: green"><%= notice %></p>
-
+<%= render "layouts/header" %>
 <% content_for :title, "Enrollments" %>
 
-<h1>Enrollments</h1>
+<div class="container">
+  <h1 class="table-heading">Enrollments</h1>
 
-<div id="enrollments">
-  <% @enrollments.each do |enrollment| %>
-    <%= render enrollment %>
-    <p>
-      <%= link_to "Show this enrollment", enrollment %>
-    </p>
-  <% end %>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Course</th>
+          <th>Status</th>
+          <th>Enrollment date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @enrollments.each do |enrollment| %>
+          <tr id="<%= dom_id(enrollment) %>">
+            <td><%= User.find(enrollment.user_id).first_name + " " + User.find(enrollment.user_id).last_name %></td>
+            
+            <td><%= Course.find(enrollment.course_id).title %></td>
+            <td><%= enrollment.status %></td>
+            <td><%= enrollment.enrolled_at %></td>
+            <td>
+              <%= link_to 'Show', enrollment_path(enrollment), class: 'btn-action' %>
+              <%= link_to 'Edit', edit_enrollment_path(enrollment), class: 'btn-action btn-warning' %>
+              <%= link_to 'Delete', enrollment_path(enrollment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-action btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= link_to 'New Enrollment', new_enrollment_path, class: 'btn-action btn-primary' %>
 </div>
 
-<%= link_to "New enrollment", new_enrollment_path %>
+<%= render "layouts/footer" %>
+
+<%= render "layouts/footer" %>

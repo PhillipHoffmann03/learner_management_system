@@ -1,0 +1,37 @@
+<!-- Header with Logo and Logout -->
+<header class="header">
+  <div class="logo">
+    <%= image_tag 'lsmlogo.png', alt: 'Logo' %>
+    <hr>
+  </div>
+
+  <!-- Quick Navigation Links -->
+  <div class="dashboard-navigation">
+    <%= link_to 'Home', dashboard_path %> 
+    <%= link_to 'Courses', courses_path %> 
+    <%= link_to 'Attendance', attendances_path %> 
+    <%= link_to 'Grades', grades_path %> 
+    <%= link_to 'Assignments', assignments_path %> 
+    <%= link_to 'Submissions', submissions_path %> 
+    <%= link_to 'Enrollements', enrollments_path %> 
+  </div>
+ 
+
+  <div class="user-info">
+  <%= image_tag 'usericon.png', class: 'user-icon' %>
+  <span class="current-user"><%= current_user.first_name %> <%= current_user.last_name %></span>
+  <%= button_to 'Logout', logout_path, method: :delete, class: 'logout-button' %>
+</div>
+
+</div>
+
+
+
+</header>
+<hr style="width:90%;text-align:left;margin-left:0">
+
+
+
+
+
+

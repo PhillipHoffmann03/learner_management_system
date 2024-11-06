@@ -1,16 +1,38 @@
-<p style="color: green"><%= notice %></p>
-
+<%= render "layouts/header" %>
 <% content_for :title, "Assignments" %>
+<div class="container">
+  <h1 class="table-heading">Assignments</h1>
 
-<h1>Assignments</h1>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Due Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @assignments.each do |assignment| %>
+          <tr id="<%= dom_id(assignment) %>">
+            <td><%= Course.find(assignment.course_id).title %></td>
+            <td><%= assignment.title %></td>
+            <td><%= assignment.description %></td>
+            <td><%= assignment.due_date %></td>
+            <td>
+              <%= link_to 'Show', assignment_path(assignment), class: 'btn-action' %>
+              <%= link_to 'Edit', edit_assignment_path(assignment), class: 'btn-action btn-warning' %>
+              <%= link_to 'Delete', assignment_path(assignment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-action btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<div id="assignments">
-  <% @assignments.each do |assignment| %>
-    <%= render assignment %>
-    <p>
-      <%= link_to "Show this assignment", assignment %>
-    </p>
-  <% end %>
+  <%= link_to 'New Assignment', new_assignment_path, class: 'btn-action btn-primary' %>
 </div>
 
-<%= link_to "New assignment", new_assignment_path %>
+<%= render "layouts/footer" %>

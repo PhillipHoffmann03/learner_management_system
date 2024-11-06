@@ -1,8 +1,11 @@
 class Course < ApplicationRecord
-    has_many :assignments
-    has_many :enrollments
-    belongs_to :instructor, class_name: 'User'
-    has_many :attendances
+  belongs_to :user
+  has_many :enrollments
+  has_many :users, through: :enrollments
+  has_many :assignments
+  has_many :grades
+  has_many :attendances
 
-  end
-  
+  validates :title, presence: true
+  validates :description, presence: true
+end

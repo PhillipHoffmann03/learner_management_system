@@ -33,10 +33,7 @@
       <label>Enter your email</label>
     </div>
 
-    <div class="input-field">
-      <%= form.text_field :role, required: true, class: "form-input", placeholder: "" %>
-      <label>Enter your role</label>
-    </div>
+   
 
     <div class="input-field">
       <%= form.text_field :first_name, required: true, class: "form-input", placeholder: "" %>
@@ -64,29 +61,119 @@
     <div class="input-field" style="margin-bottom:2px">
       
       <div>
-        <%= form.date_select :date_of_birth, start_year: 1950, end_year: Time.now.year, required: true, class: "form-input" %>
+        <%= form.date_select :date_of_birth, start_year: 1920, end_year: Time.now.year, required: true, class: "form-input" %>
       </div>
     </div>
 
+   <label style="color: white">Nationality:</label>
     <div class="input-field">
-      <%= form.text_field :nationality, required: true, class: "form-input", placeholder: "" %>
-      <label>Enter your nationality</label>
-    </div>
+      <%= form.select :nationality, 
+          options_for_select([
+            ['South Africa', 'South Africa'], 
+            ['United States', 'United States'], 
+            ['Canada', 'Canada'], 
+            ['United Kingdom', 'United Kingdom'], 
+            ['Australia', 'Australia']
+          ]), 
+          { prompt: 'Select your nationality' } %>
+      
+</div>
 
-    <div class="input-field">
-      <%= form.text_field :gender, required: true, class: "form-input", placeholder: "" %>
-      <label>Enter your gender</label>
-    </div>
+<label style="color: white">Gender:</label>
+  <div class="input-field">
+      <%= form.select :gender, 
+          options_for_select([
+            ['Male', 'male'], 
+            ['Female', 'female'], 
+            ['Other', 'other']
+          ]), 
+          { prompt: 'Select your gender' }, 
+          class: "form-input" %>
 
-    <div class="input-field">
-      <%= form.text_field :student_grade_level, required: true, class: "form-input", placeholder: "" %>
-      <label>Enter your grade level</label>
-    </div>
+  </div>
 
+  <label style="color: white">Role:</label>
+  <div class="input-field">
+    <%= form.select :role, 
+        options_for_select([
+          ['Student', 'student'], 
+          ['Instructor', 'instructor'], 
+          ['Guardian', 'guardian'], 
+          ['Developer/Admin', 'developer_admin']
+        ]), 
+        { prompt: 'Select your role' }, 
+        class: "form-input", id: "role-select" %>
+  </div>
+  
+  <div id="grade-level-container">
+    <label style="color: white">Grade level:</label>
     <div class="input-field">
-      <%= form.text_field :student_course_enrolled, required: true, class: "form-input", placeholder: "" %>
-      <label>Enter your course</label>
+      <%= form.select :student_grade_level, 
+          options_for_select([
+            ['1', '1'], ['2', '2'], ['3', '3'], ['4', '4'], 
+            ['5', '5'], ['6', '6'], ['7', '7'], ['8', '8'], 
+            ['9', '9'], ['10', '10'], ['11', '11'], ['12', '12'],
+            ['BSc IT 1st Year', 'BSc IT 1st Year'], 
+            ['BSc IT 2nd Year', 'BSc IT 2nd Year'], 
+            ['BSc IT 3rd Year', 'BSc IT 3rd Year'], 
+            ['BSc Engineering', 'BSc Engineering'], 
+            ['BSc Computer Science', 'BSc Computer Science'], 
+            ['BSc Mathematics', 'BSc Mathematics'], 
+            ['BSc Physics', 'BSc Physics'], 
+            ['BSc Chemistry', 'BSc Chemistry'], 
+            ['BSc Biology', 'BSc Biology'], 
+            ['BSc Statistics', 'BSc Statistics'], 
+            ['BCom', 'BCom'], 
+            ['BBA', 'BBA'], 
+            ['BSc Information Systems', 'BSc Information Systems'], 
+            ['BA Psychology', 'BA Psychology'], 
+            ['BEng Mechanical', 'BEng Mechanical'], 
+            ['BEng Civil', 'BEng Civil'], 
+            ['BEng Electrical', 'BEng Electrical'], 
+            ['BSc Environmental Science', 'BSc Environmental Science'], 
+            ['Diploma in Computer Science', 'Diploma in Computer Science'],
+            ['Diploma in Engineering', 'Diploma in Engineering'],
+            ['BSc Data Science', 'BSc Data Science'],
+            ['BSc Artificial Intelligence', 'BSc Artificial Intelligence']
+          ]), 
+          { prompt: 'Select your grade level', required: true, class: 'form-input' }
+      %>
     </div>
+  </div>
+  
+  <div id="course-container">
+    <label style="color: white">Which course are you enrolling:</label>
+    <div class="input-field">
+      <%= form.select :student_course_enrolled, 
+          options_for_select(@courses), 
+          { prompt: 'Select your course' }, 
+          class: "form-input" %>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const roleSelect = document.getElementById("role-select");
+      const gradeLevelContainer = document.getElementById("grade-level-container");
+      const courseContainer = document.getElementById("course-container");
+  
+      function toggleDropdowns() {
+        const role = roleSelect.value;
+        const isStudent = role === "student";
+        
+        gradeLevelContainer.style.display = isStudent ? "block" : "none";
+        courseContainer.style.display = isStudent ? "block" : "none";
+      }
+  
+      // Run on load in case a role is pre-selected
+      toggleDropdowns();
+  
+      // Run on role change
+      roleSelect.addEventListener("change", toggleDropdowns);
+    });
+  </script>
+  
+
 
     <button type="submit">Register</button>
   <% end %>
