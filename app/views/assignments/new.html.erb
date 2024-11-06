@@ -1,32 +1,4 @@
-<% content_for :title, "New assignment" %>
-<!-- Header with Logo and Logout -->
-<header class="header">
-  <div class="logo">
-    <%= image_tag 'lsmlogo.png', alt: 'Logo' %>
-    <hr>
-  </div>
-
-  <!-- Quick Navigation Links -->
-  <div class="dashboard-navigation">
-    <%= link_to 'Homepage', dashboard_path %> 
-    <%= link_to 'Courses', courses_path %> 
-    <%= link_to 'Attendance', attendances_path %> 
-    <%= link_to 'Grades', grades_path %> 
-    <%= link_to 'Assignments', assignments_path %> 
-    <%= link_to 'Submissions', submissions_path %>
-  </div>
-
-  <%= button_to 'Logout', logout_path, method: :delete, class: 'logout' %>
-</header>
-<hr style="width:90%;text-align:left;margin-left:0">
-
-<!-- Flash Notice -->
-<% if flash[:notice] %>
-  <div class="flash-notice" id="flash-notice">
-    <p style="color: green;"><%= flash[:notice] %></p>
-    <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
-  </div>
-<% end %>
+<%= render "layouts/header" %>
 <h1>New assignment</h1>
 
 <%= render "form", assignment: @assignment %>
@@ -35,7 +7,4 @@
 
 
 
-<!-- Footer -->
-<footer class="footer">
-  402200309
-</footer>
+<%= render "layouts/footer" %>

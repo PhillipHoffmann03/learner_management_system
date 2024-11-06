@@ -2,7 +2,6 @@
   <% if enrollment.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
-
       <ul>
         <% enrollment.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,19 +10,21 @@
     </div>
   <% end %>
 
+  <!-- Student Selection Dropdown -->
   <div>
-    <%= form.label :student_id, style: "display: block" %>
-    <%= form.number_field :student_id %>
+    <%= form.label :"Student", "Student", style: "display: block" %>
+    <%= form.collection_select :user_id, User.all, :id, :full_name, prompt: 'Select a student' %>
   </div>
 
+  <!-- Course Selection Dropdown -->
   <div>
-    <%= form.label :course_id, style: "display: block" %>
-    <%= form.number_field :course_id %>
+    <%= form.label :course_id, "Course", style: "display: block" %>
+    <%= form.collection_select :course_id, Course.all, :id, :title, prompt: 'Select a course' %>
   </div>
 
   <div>
     <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+    <%= form.select :status, options_for_select(['Enrolled', 'Pending Approval', 'Declined']), prompt: 'Select status' %>
   </div>
 
   <div>

@@ -99,7 +99,7 @@
           ['Student', 'student'], 
           ['Instructor', 'instructor'], 
           ['Guardian', 'guardian'], 
-          ['Developer/Admin', 'developer_admin']
+          ['Admin', 'admin']
         ]), 
         { prompt: 'Select your role' }, 
         class: "form-input", id: "role-select" %>
@@ -136,7 +136,7 @@
             ['BSc Data Science', 'BSc Data Science'],
             ['BSc Artificial Intelligence', 'BSc Artificial Intelligence']
           ]), 
-          { prompt: 'Select your grade level', required: true, class: 'form-input' }
+          { prompt: 'Select your grade level', class: 'form-input' }
       %>
     </div>
   </div>
@@ -176,5 +176,9 @@
 
 
     <button type="submit">Register</button>
+
+    <div class="register">
+      <p>Already have an account? <%= link_to "Login", new_session_path %></p>
+    </div>
   <% end %>
 </div>

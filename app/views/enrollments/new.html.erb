@@ -1,5 +1,5 @@
 <% content_for :title, "New enrollment" %>
-
+<%= render "layouts/header" %>
 <h1>New enrollment</h1>
 
 <%= render "form", enrollment: @enrollment %>
@@ -9,3 +9,4 @@
 <div>
   <%= link_to "Back to enrollments", enrollments_path %>
 </div>
+<%= render "layouts/footer" %>

@@ -17,7 +17,14 @@
       <tbody>
         <% @assignments.each do |assignment| %>
           <tr id="<%= dom_id(assignment) %>">
-            <td><%= Course.find(assignment.course_id).title %></td>
+            <td>
+              <%= if course = Course.find_by(id: assignment.course_id)
+                    course.title
+                  else
+                    "Course not found"
+                  end %>
+            </td>
+
             <td><%= assignment.title %></td>
             <td><%= assignment.description %></td>
             <td><%= assignment.due_date %></td>

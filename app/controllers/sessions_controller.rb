@@ -17,6 +17,16 @@ class SessionsController < ApplicationController
       render :new  # Render login form again if authentication fails
     end
   end
+
+  def forgot
+    # Renders the forgot password page
+  end
+
+  def send_reset_instructions
+    # Logic to send reset instructions would go here (e.g., email functionality)
+
+    redirect_to login_path, notice: "Check your email for reset instructions."
+  end
   
 
   def destroy

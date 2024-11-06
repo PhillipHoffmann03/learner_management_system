@@ -168,6 +168,7 @@
 .current-user {
     font-weight: bold; /* Make the current user name bold */
     margin-right: 20px; /* Push the logout button to the right */
+    font-size: 14px;
 
 }
 

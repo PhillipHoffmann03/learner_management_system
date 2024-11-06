@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # User sign-up route
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
+  get 'forgot', to: 'sessions#forgot', as: :forgot_password
+  post 'forgot_password', to: 'sessions#send_reset_instructions', as: :forgot_password_submit
 
   # Dashboard route
   get 'dashboard', to: 'dashboard#index', as: :dashboard

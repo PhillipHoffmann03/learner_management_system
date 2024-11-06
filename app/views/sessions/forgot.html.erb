@@ -1,0 +1,24 @@
+
+
+<div class="wrapper">
+  <%= form_with(url: sessions_path, local: true, class: "login-form") do |form| %>
+    
+    <p style="font-size:18px; color:white; ">Forgot your password ? Please enter your email in the field below and we wil send you instructions on how to reset your account. Check your inbox.</p>
+
+    
+    <div class="input-field">
+      <%= form.text_field :email, required: true, class: "form-input", placeholder: "" %>
+      <label>Enter your email</label>
+    </div>
+
+
+
+    
+
+    <button type="submit">Submit request</button>
+
+    <div class="register">
+      <p>Don't have an account? <%= link_to "Register", new_user_path %></p>
+    </div>
+  <% end %>
+</div>

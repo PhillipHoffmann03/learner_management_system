@@ -1,5 +1,5 @@
 <% content_for :title, "New submission" %>
-
+<%= render "layouts/header" %>
 <h1>New submission</h1>
 
 <%= render "form", submission: @submission %>
@@ -9,3 +9,4 @@
 <div>
   <%= link_to "Back to submissions", submissions_path %>
 </div>
+<%= render "layouts/footer" %>

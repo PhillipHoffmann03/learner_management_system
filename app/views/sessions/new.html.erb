@@ -1,6 +1,11 @@
 
 
+
 <div class="wrapper">
+
+<% if notice %>
+  <p style="color: green; font-size: 16px;"><%= notice %></p>
+<% end %>
   <%= form_with(url: sessions_path, local: true, class: "login-form") do |form| %>
     
     <h2>Login</h2>
@@ -23,8 +28,9 @@
         <%= check_box_tag :remember_me %>
         <p>Remember me</p>
       </label>
-      <%= link_to "Forgot password?", "#" %>
+      <%= link_to "Forgot password?", forgot_password_path %>
     </div>
+
 
     <button type="submit">Log In</button>
 
