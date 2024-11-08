@@ -96,7 +96,7 @@ body {
   align-items: center;
   gap: 20px; /* Spacing between links */
   margin-top: 20px;
-  margin-right: 150px;
+  margin-right: auto;
   padding: 10px;
 }
 
@@ -105,7 +105,7 @@ body {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 12px;
   padding: 4px 6px;
   border-radius: 5px;
   background-color: #55608f;

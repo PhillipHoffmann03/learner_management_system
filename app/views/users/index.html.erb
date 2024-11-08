@@ -1,16 +1,61 @@
-<p style="color: green"><%= notice %></p>
+<%= render "layouts/header" %>
 
-<% content_for :title, "Users" %>
-
-<h1>Users</h1>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
+<div class="container">
+  <h1 class="table-heading">Users</h1>
+  
+  <!-- Flash notice for success messages -->
+  <% if flash[:notice] %>
+    <div class="flash-notice">
+      <%= flash[:notice] %>
+    </div>
   <% end %>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Address</th>
+          <th>Phone Number</th>
+          <th>Date of Birth</th>
+          <th>Nationality</th>
+          <th>Gender</th>
+          <th>Grade Level</th>
+          <th>Course Enrolled</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr id="<%= dom_id(user) %>">
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.role %></td>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.address %></td>
+            <td><%= user.phone_number %></td>
+            <td><%= user.date_of_birth %></td>
+            <td><%= user.nationality %></td>
+            <td><%= user.gender %></td>
+            <td><%= user.student_grade_level %></td>
+            <td><%= user.student_course_enrolled %></td>
+            <td>
+              <%= link_to 'Show', user_path(user), class: 'btn-action' %>
+              <%= link_to 'Edit', edit_user_path(user), class: 'btn-action btn-warning' %>
+              <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-action btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= link_to 'New User', new_user_path, class: 'btn-action btn-primary' %>
 </div>
 
-<%= link_to "New user", new_user_path %>
+<%= render "layouts/footer" %>

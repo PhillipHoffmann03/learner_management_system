@@ -35,9 +35,14 @@
     <% end %>
 
     <% if current_user.admin? %>
-      <%= link_to 'Manage Courses', courses_path %>
-      <%= link_to 'Manage Enrollments', enrollments_path %>
-      
+      <%= link_to 'Home', dashboard_path %>
+      <%= link_to 'Courses', courses_path %>
+      <%= link_to 'Enrollments', enrollments_path %>
+      <%= link_to 'Assignments', assignments_path %>
+      <%= link_to 'Submissions', submissions_path %>
+      <%= link_to 'Attendance', attendances_path %>
+      <%= link_to 'Grades', grades_path %>
+  
     <% end %>
   <% end %>
 </div>
@@ -46,7 +51,7 @@
 
   <div class="user-info">
   <%= image_tag 'usericon.png', class: 'user-icon' %>
-  <span class="current-user"><%= current_user.role %> - <%= current_user.first_name %> <%= current_user.last_name %></span>
+  <span class="current-user"><%= current_user.role.capitalize %> - <%= current_user.first_name %> <%= current_user.last_name %></span>
   <%= button_to 'Logout', logout_path, method: :delete, class: 'logout-button' %>
 </div>
 
