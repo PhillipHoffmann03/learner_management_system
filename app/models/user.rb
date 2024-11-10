@@ -2,8 +2,9 @@ class User < ApplicationRecord
 
   # Define the roles in the model for convenience
     ROLES = %w[Admin Guardian Student Instructor].freeze
+    has_one_attached :file # Add this line to allow file attachments
     has_secure_password
-  
+    has_many :assignments
     has_many :enrollments
     has_many :courses
     has_many :attendances

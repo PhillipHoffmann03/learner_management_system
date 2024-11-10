@@ -13,8 +13,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id  # Store user ID in session to keep them logged in
       redirect_to dashboard_path, notice: "Logged in successfully!"  # Redirect to dashboard on success
     else
-      flash[:alert] = "Invalid username or password"
-      render :new  # Render login form again if authentication fails
+      redirect_to root_path, notice: 'Incorrect Password or Username.'
+      
     end
   end
 

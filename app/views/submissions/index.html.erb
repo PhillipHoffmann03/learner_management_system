@@ -3,33 +3,37 @@
 <div class="container">
   <h1 class="table-heading">Submissions</h1>
   
-  <!-- Flash notice for success messages -->
-  <% if flash[:notice] %>
-    <div class="flash-notice">
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
+
 
   <div class="table-wrapper">
     <table>
       <thead>
         <tr>
-          <th>Assignment ID</th>
+          <th>Assignment</th>
           <th>Student ID</th>
           <th>Submission Date</th>
           <th>Grade</th>
           <th>Feedback</th>
+          <th>File</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <% @submissions.each do |submission| %>
           <tr id="<%= dom_id(submission) %>">
-            <td><%= submission.assignment_id %></td>
+            <td><%= Assignment.find(submission.assignment_id).title %></td>
             <td><%= User.find(submission.user_id).first_name + " " + User.find(submission.user_id).last_name %></td>
             <td><%= submission.submission_date %></td>
             <td><%= submission.grade %></td>
             <td><%= submission.feedback %></td>
+            <td>
+              <% if submission.file.attached? %>
+                <%= link_to "Download File", rails_blob_path(submission.file, disposition: "attachment") %>
+              <% else %>
+                No file uploaded
+              <% end %>
+            </td>
+            
             <td>
               <%= link_to 'Show', submission_path(submission), class: 'btn-action' %>
               <%= link_to 'Edit', edit_submission_path(submission), class: 'btn-action btn-warning' %>

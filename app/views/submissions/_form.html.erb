@@ -1,8 +1,7 @@
-<%= form_with(model: submission) do |form| %>
+<%= form_with(model: submission, local: true) do |form| %>
   <% if submission.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
-
       <ul>
         <% submission.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,32 +10,81 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :assignment_id, style: "display: block" %>
-    <%= form.number_field :assignment_id %>
-  </div>
+  <!-- Student Fields -->
+  <% if current_user.student? %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.number_field :user_id %>
-  </div>
+    <div style="display: none;">
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
 
-  <div>
-    <%= form.label :submission_date, style: "display: block" %>
-    <%= form.datetime_field :submission_date %>
-  </div>
 
-  <div>
-    <%= form.label :grade, style: "display: block" %>
-    <%= form.text_field :grade %>
-  </div>
+    <div>
+      <%= form.label :submission_date, style: "display: block" %>
+      <%= form.date_select :submission_date, { order: [:day, :month, :year] }, { include_blank: true } %>
+    </div>
 
-  <div>
-    <%= form.label :feedback, style: "display: block" %>
-    <%= form.text_area :feedback %>
-  </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+    <div>
+      <%= form.label :student_number, style: "display: block" %>
+      <%= form.select :student_number, options_for_select([["#{current_user.first_name} #{current_user.last_name} (#{current_user.id})", current_user.id]]), {}, { disabled: true } %>
+    </div>
+
+    <div>
+      <%= form.label :assignment_id, style: "display: block" %>
+      <% if @assignments.present? %>
+        <%= form.select :assignment_id, options_from_collection_for_select(@assignments, :id, :title), prompt: "Select an Assignment" %>
+      <% else %>
+        <p>No assignments available for your enrolled courses.</p>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :file, "Upload File", style: "display: block" %>
+      <%= form.file_field :file %>
+    </div>
+
+    <div>
+      <%= form.submit "Submit" %>
+    </div>
+
+  <!-- Instructor Fields -->
+  <% elsif current_user.instructor? %>
+    <div>
+      <%= form.label :student_number, style: "display: block" %>
+      <%= form.select :student_number, options_for_select([["#{current_user.first_name} #{current_user.last_name} (#{current_user.id})", current_user.id]]), {}, { disabled: true } %>
+    </div>
+
+    <div>
+      <%= form.label :assignment_id, style: "display: block" %>
+      <% if @assignments.present? %>
+        <%= form.select :assignment_id, options_from_collection_for_select(@assignments, :id, :title), prompt: "Select an Assignment" %>
+      <% else %>
+        <p>No assignments available for your enrolled courses.</p>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.label :submission_date, style: "display: block" %>
+      <%= form.datetime_field :submission_date %>
+    </div>
+
+    <div>
+      <%= form.label :grade, style: "display: block" %>
+      <%= form.text_field :grade %>
+    </div>
+
+    <div>
+      <%= form.label :feedback, style: "display: block" %>
+      <%= form.text_area :feedback %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :file, "Upload File", style: "display: block" %>
+      <%= form.file_field :file %>
+    </div>
+
+    <div>
+      <%= form.submit "Update Submission" %>
+    </div>
+  <% end %>
 <% end %>

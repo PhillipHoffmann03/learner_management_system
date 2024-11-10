@@ -1,9 +1,12 @@
 <!-- Header with Logo and Logout -->
 <header class="header">
   <div class="logo">
+  <%= link_to dashboard_path do %>
     <%= image_tag 'lsmlogo.png', alt: 'Logo' %>
-    <hr>
+  <% end %>
+  <hr>
   </div>
+
 
   <!-- Quick Navigation Links -->
   <div class="dashboard-navigation">
@@ -16,8 +19,9 @@
       <%= link_to 'Home', dashboard_path %>
       <%= link_to 'Enrollments', enrollments_path %>
       <%= link_to 'Assignments', assignments_path %>
-      <%= link_to 'Grades', grades_path %>
-      <%= link_to 'Attendance', attendances_path %>
+      <%= link_to 'Submissions', submissions_path %>
+      
+      
     <% end %>
 
     <% if current_user.instructor? %>
@@ -30,7 +34,7 @@
 
     <% if current_user.guardian? %>
       <%= link_to 'Home', dashboard_path %>
-      <%= link_to 'Grades', grades_path %>
+      <%= link_to 'View student grades', submissions_path %>
       <%= link_to 'Attendance', attendances_path %>
     <% end %>
 
@@ -60,7 +64,7 @@
 
 
 </header>
-<hr style="width:90%;text-align:left;margin-left:0">
+<hr style="width:95%;text-align:left;margin:20px">
 
 
 

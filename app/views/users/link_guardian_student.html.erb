@@ -3,6 +3,7 @@
 <h1>Link Your Account with a Student</h1>
 
 <% if @students.present? %>
+<div class="table-wrapper">
   <table>
     <thead>
       <tr>
@@ -18,14 +19,18 @@
           <td><%= student.first_name %></td>
           <td><%= student.last_name %></td>
           <td><%= student.email %></td>
-          <td>
-            
+        
+            <td>
+              <%= button_to 'Link Student', link_student_path(student_id: student.id), method: :post, class: 'link-button' %>
+            </td>
+        
 
-          </td>
+         
         </tr>
       <% end %>
     </tbody>
   </table>
+  </div>
 <% else %>
   <p>No unlinked students available to link.</p>
 <% end %>

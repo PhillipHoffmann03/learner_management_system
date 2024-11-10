@@ -12,24 +12,25 @@
   <% end %>
 
   <div>
-    <%= form.label :student_id, style: "display: block" %>
-    <%= form.text_field :student_id %>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.select :user_id, options_from_collection_for_select(User.where(role: 'student'), :id, :full_name), prompt: "Select a Student" %>
   </div>
 
-  <div>
-    <%= form.label :course_id, style: "display: block" %>
-    <%= form.text_field :course_id %>
-  </div>
+<div>
+  <%= form.label :course_id, style: "display: block" %>
+  <%= form.select :course_id, options_from_collection_for_select(Course.all, :id, :title), prompt: "Select a Course" %>
+</div>
 
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
-  </div>
+<div>
+  <%= form.label :date, style: "display: block" %>
+  <%= form.date_field :date %>
+</div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
-  </div>
+<div>
+  <%= form.label :status, style: "display: block" %>
+  <%= form.select :status, options_for_select([['Present', 'Present'], ['Absent', 'Absent']]), prompt: "Select Status" %>
+</div>
+
 
   <div>
     <%= form.submit %>

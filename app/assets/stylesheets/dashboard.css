@@ -44,11 +44,22 @@
     }
 
     /* Logout button */
-    .logout {
+    .logout-button {
       display: inline-block;
-    padding: 8px 12px;
+    padding: 4px 6px;
     color: #000000;
     background-color: #e74c3c;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    }
+    /*link student table button */
+    .link-button {
+    display: inline-block;
+    padding: 4px 6px;
+    color: #000000;
+    background-color: #6fa6ec;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
@@ -117,3 +128,81 @@
         font-weight: bold;
       }
       
+
+      /*----------Dashboard Email form styling -----------*/
+
+      /* General Styles for Contact Form */
+.contact-form-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Custom form styling */
+.dashboard-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-form-group {
+  margin-bottom: 20px;
+}
+
+.dashboard-form-label {
+  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 600;
+  display: block;
+}
+
+.dashboard-form-select,
+.dashboard-form-input,
+.dashboard-form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus styles */
+.dashboard-form-select:focus,
+.dashboard-form-input:focus,
+.dashboard-form-textarea:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.dashboard-form-textarea {
+  resize: vertical;
+}
+
+.dashboard-form-submit {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-form-submit:hover {
+  background-color: #45a049;
+}

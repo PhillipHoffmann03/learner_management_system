@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!  # Assuming you're using Devise or a similar auth method
+  #before_action :authenticate_user!  # Assuming you're using Devise or a similar auth method
 
   def new
     @user = User.new

@@ -1,9 +1,23 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: %i[ show edit update destroy ]
 
-  # GET /attendances or /attendances.json
   def index
-    @attendances = Attendance.all
+    if current_user.instructor?
+      # Fetch all attendances if the user is an instructor
+      @attendances = Attendance.all
+    elsif current_user.guardian?
+      # If the user is a guardian, show only the attendance of their linked student
+      @student = User.find_by(guardian_id: current_user.id, role: "student")
+      
+      if @student
+        # Show the attendance records for the linked student
+        @attendances = @student.attendances
+      else
+        # If no student is linked to the guardian, you can either show an alert or an empty list
+        flash[:alert] = "No student is linked to your account."
+        @attendances = []
+      end
+    end
   end
 
   # GET /attendances/1 or /attendances/1.json

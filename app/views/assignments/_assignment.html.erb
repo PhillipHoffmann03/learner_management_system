@@ -1,34 +1,30 @@
 <div id="<%= dom_id assignment %>">
-  <p>
-    <strong>Course:</strong>
-    <%= assignment.course_id %>
-  </p>
+<div class="table-wrapper">
+<table>
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Due Date</th>
+      <th>Created At</th>
+      <th>Download Assignment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= Course.find(assignment.course_id).title %></td>
+      <td><%= assignment.title %></td>
+      <td><%= assignment.description %></td>
+      <td><%= assignment.due_date %></td>
+      <td><%= assignment.created_at %></td>
+      <td>
+        <%= link_to 'Download', assignment.assignment_file, target: '_blank', class: 'btn-action btn-primary' %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-  <p>
-    <strong>Title:</strong>
-    <%= assignment.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= assignment.description %>
-  </p>
-
-  <p>
-    <strong>Assignment 1:</strong>
-    <%= assignment.assignment_1 %>
-  </p>
-
-  
-
-  <p>
-    <strong>Due date:</strong>
-    <%= assignment.due_date %>
-  </p>
-
-  <p>
-    <strong>Created at:</strong>
-    <%= assignment.created_at %>
-  </p>
 
 </div>

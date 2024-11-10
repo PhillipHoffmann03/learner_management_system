@@ -1,0 +1,36 @@
+#notice-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 80px;
+    background-color: #f0f8ff;
+    border: 2px solid green;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    color: green;
+    font-size: 16px;
+    text-align: center;
+    padding: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 70%;
+  }
+  
+  #notice-popup p {
+    margin: 0;
+  }
+  
+  #dismiss-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+  }
+  
