@@ -2,11 +2,17 @@ class SubmissionsController < ApplicationController
   
   before_action :set_submission, only: %i[ show edit update destroy ]
   # layout "template"
-    def index
+  def index
+    if current_user.student? || current_user.guardian?
+      # Show submissions for courses the current user (or their linked student) is enrolled in
+      @submissions = Submission.joins(assignment: { course: :enrollments })
+                               .where(enrollments: { user_id: current_user.id })
+    else
+      # Show all submissions for instructors and admins
       @submissions = Submission.all
-      @assignments = Assignment.joins(course: :enrollments)
-                             .where(enrollments: { user_id: current_user.id })
     end
+  end
+  
   
     def show
       @submission = Submission.find(params[:id])

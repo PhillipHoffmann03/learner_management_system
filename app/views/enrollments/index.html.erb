@@ -34,7 +34,10 @@
     </table>
   </div>
 
+  <% unless current_user.student? || current_user.guardian? %>
   <%= link_to 'New Enrollment', new_enrollment_path, class: 'btn-action btn-primary' %>
+<% end %>
+
 </div>
 
 <%= render "layouts/footer" %>
