@@ -12,6 +12,7 @@
           <th>Course</th>
           <th>Status</th>
           <th>Enrollment date</th>
+          
           <th>Actions</th>
         </tr>
       </thead>
@@ -24,10 +25,12 @@
             <td><%= enrollment.status %></td>
             <td><%= enrollment.enrolled_at %></td>
             <td>
+            <% unless current_user.student? || current_user.guardian? %> 
               <%= link_to 'Show', enrollment_path(enrollment), class: 'btn-action' %>
               <%= link_to 'Edit', edit_enrollment_path(enrollment), class: 'btn-action btn-warning' %>
               <%= link_to 'Delete', enrollment_path(enrollment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-action btn-danger' %>
-            </td>
+            <%end%>
+              </td>
           </tr>
         <% end %>
       </tbody>

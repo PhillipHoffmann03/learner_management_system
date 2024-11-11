@@ -23,17 +23,21 @@
             <td><%= attendance.date %></td>
             <td><%= attendance.status %></td>
             <td>
+            <% unless current_user.guardian? || current_user.student? %>
               <%= link_to 'Show', attendance_path(attendance), class: 'btn-action' %>
               <%= link_to 'Edit', edit_attendance_path(attendance), class: 'btn-action btn-warning' %>
               <%= link_to 'Delete', attendance_path(attendance), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-action btn-danger' %>
-            </td>
+            <%end%>
+              </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
 
+  <% unless current_user.guardian? || current_user.student? %>
   <%= link_to 'New Attendance', new_attendance_path, class: 'btn-action btn-primary' %>
+  <%end%>
 </div>
 
 <%= render "layouts/footer" %>

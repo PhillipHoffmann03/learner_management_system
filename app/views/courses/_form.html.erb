@@ -22,8 +22,8 @@
   </div>
 
   <div>
-    <%= form.label :instructor_id, style: "display: block" %>
-    <%= form.number_field :instructor_id %>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.select :user_id, options_from_collection_for_select(User.where(role: 'instructor'), :id, :full_name), prompt: "Who is the instructor ?" %>
   </div>
 
   <div>

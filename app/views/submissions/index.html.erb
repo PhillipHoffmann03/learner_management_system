@@ -36,10 +36,12 @@
             
             <td>
               <% unless submission.grade.present? || submission.feedback.present? %>
-                <%= link_to 'Show', submission_path(submission), class: 'btn-action' %>
+                
                 <%= link_to 'Edit', edit_submission_path(submission), class: 'btn-action btn-warning' %>
+                <% unless current_user.instructor?  %>
                 <%= link_to 'Delete', submission_path(submission), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-action btn-danger' %>
-              <% end %>
+                <%end%>
+                <% end %>
             </td>
 
           </tr>
@@ -48,7 +50,10 @@
     </table>
   </div>
 
+
+  <% unless current_user.guardian? %>
   <%= link_to 'New Submission', new_submission_path, class: 'btn-action btn-primary' %>
+  <%end%>
 </div>
 
 <%= render "layouts/footer" %>

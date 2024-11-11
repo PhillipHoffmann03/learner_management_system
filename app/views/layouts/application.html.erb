@@ -20,6 +20,33 @@
   </head>
 
   <body>
+
+
+  <div class="notice-wrapper">
+    <% if notice %>
+      <div id="notice-popup" class="notice">
+        <p><%= notice %></p>
+      </div>
+    <% end %>
+  </div>
+
+  
     <%= yield %>
+
+
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const noticePopup = document.getElementById("notice-popup");
+      if (noticePopup) {
+        // Auto-hide after 3 seconds
+        setTimeout(function () {
+          noticePopup.style.display = "none";
+        }, 3000);
+      }
+    });
+  </script>
+
+
   </body>
 </html>

@@ -34,7 +34,7 @@
 
     <% if current_user.guardian? %>
       <%= link_to 'Home', dashboard_path %>
-      <%= link_to 'View student grades', submissions_path %>
+      <%= link_to 'View student submissions and grades', submissions_path %>
       <%= link_to 'Attendance', attendances_path %>
     <% end %>
 

@@ -30,9 +30,11 @@
             <td><%= assignment.due_date %></td>
             <td>
               <%= link_to 'Show', assignment_path(assignment), class: 'btn-action' %>
+              <% unless current_user.student? || current_user.guardian? %>          
               <%= link_to 'Edit', edit_assignment_path(assignment), class: 'btn-action btn-warning' %>
               <%= link_to 'Delete', assignment_path(assignment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-action btn-danger' %>
-            </td>
+                  <%end%>
+              </td>
           </tr>
         <% end %>
       </tbody>

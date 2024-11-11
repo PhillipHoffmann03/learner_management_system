@@ -1,4 +1,4 @@
-<p style="color: green"><%= notice %></p>
+<%= render "layouts/header" %>
 
 <%= render @submission %>
 
@@ -8,3 +8,4 @@
 
   <%= button_to "Destroy this submission", @submission, method: :delete %>
 </div>
+<%= render "layouts/footer" %>

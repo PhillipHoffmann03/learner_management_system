@@ -43,7 +43,7 @@ class EnrollmentsController < ApplicationController
 
     respond_to do |format|
       if @enrollment.save
-        format.html { redirect_to @enrollment, notice: "Enrollment was successfully created." }
+        format.html { redirect_to enrollments_path, notice: "Enrollment was successfully created." }
         format.json { render :show, status: :created, location: @enrollment }
       else
         format.html { render :new, status: :unprocessable_entity }

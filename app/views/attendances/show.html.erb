@@ -1,5 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
+<%= render "layouts/header" %>
 <%= render @attendance %>
 
 <div>
@@ -8,3 +7,4 @@
 
   <%= button_to "Destroy this attendance", @attendance, method: :delete %>
 </div>
+<%= render "layouts/footer" %>

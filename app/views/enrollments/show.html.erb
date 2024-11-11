@@ -1,4 +1,4 @@
-<p style="color: green"><%= notice %></p>
+<%= render "layouts/header" %>
 
 <%= render @enrollment %>
 
@@ -8,3 +8,5 @@
 
   <%= button_to "Destroy this enrollment", @enrollment, method: :delete %>
 </div>
+
+<%= render "layouts/footer" %>
