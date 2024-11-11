@@ -1,8 +1,8 @@
-<%= form_with(model: attendance) do |form| %>
+<%= form_with(model: attendance, class: 'assignment-form') do |form| %>
+  
   <% if attendance.errors.any? %>
-    <div style="color: red">
+    <div class="error-messages">
       <h2><%= pluralize(attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
-
       <ul>
         <% attendance.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,28 +11,28 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.select :user_id, options_from_collection_for_select(User.where(role: 'student'), :id, :full_name), prompt: "Select a Student" %>
+  <div class="form-group">
+    <%= form.label :user_id, 'Select Student', class: 'form-label' %>
+    <%= form.select :user_id, options_from_collection_for_select(User.where(role: 'student'), :id, :full_name), { prompt: "Select a Student" }, class: 'form-input' %>
   </div>
 
-<div>
-  <%= form.label :course_id, style: "display: block" %>
-  <%= form.select :course_id, options_from_collection_for_select(Course.all, :id, :title), prompt: "Select a Course" %>
-</div>
-
-<div>
-  <%= form.label :date, style: "display: block" %>
-  <%= form.date_field :date %>
-</div>
-
-<div>
-  <%= form.label :status, style: "display: block" %>
-  <%= form.select :status, options_for_select([['Present', 'Present'], ['Absent', 'Absent']]), prompt: "Select Status" %>
-</div>
-
-
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.label :course_id, 'Select Course', class: 'form-label' %>
+    <%= form.select :course_id, options_from_collection_for_select(Course.all, :id, :title), { prompt: "Select a Course" }, class: 'form-input' %>
   </div>
+
+  <div class="form-group">
+    <%= form.label :date, 'Date', class: 'form-label' %>
+    <%= form.date_field :date, class: 'form-input' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :status, 'Attendance Status', class: 'form-label' %>
+    <%= form.select :status, options_for_select([['Present', 'Present'], ['Absent', 'Absent']]), { prompt: "Select Status" }, class: 'form-input' %>
+  </div>
+
+  <div class="form-actions">
+    <%= form.submit 'Save Attendance', class: 'btn-action btn-primary' %>
+  </div>
+
 <% end %>

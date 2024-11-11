@@ -1,24 +1,18 @@
-
-
 <div class="wrapper">
-  <%= form_with(url: sessions_path, local: true, class: "login-form") do |form| %>
+  <%= form_with(url: "#", local: true, class: "login-form") do |form| %>
     
-    <p style="font-size:18px; color:white; ">Forgot your password ? Please enter your email in the field below and we wil send you instructions on how to reset your account. Check your inbox.</p>
+    <p style="font-size:18px; color:white;">Forgot your password? Please enter your email in the field below and we will send you instructions on how to reset your account. Check your inbox.</p>
 
-    
     <div class="input-field">
-      <%= form.text_field :email, required: true, class: "form-input", placeholder: "" %>
+      <%= form.text_field :email, required: true, class: "form-input", placeholder: "Enter your email" %>
       <label>Enter your email</label>
     </div>
 
-
-
-    
-
-    <button type="submit">Submit request</button>
+    <button type="submit" onclick="window.location.href = 'mailto:admin@lmsapp.co.za?subject=Password%20Reset%20Request&body=Kindly%20assist%20with%20resetting%20my%20account%20password:%20<%= params[:email] %>';">Submit request</button>
 
     <div class="register">
       <p>Don't have an account? <%= link_to "Register", new_user_path %></p>
     </div>
   <% end %>
 </div>
+

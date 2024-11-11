@@ -1,6 +1,7 @@
-<%= form_with(model: enrollment) do |form| %>
+<%= form_with(model: enrollment, class: 'assignment-form') do |form| %>
+  
   <% if enrollment.errors.any? %>
-    <div style="color: red">
+    <div class="error-messages">
       <h2><%= pluralize(enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
       <ul>
         <% enrollment.errors.each do |error| %>
@@ -11,28 +12,32 @@
   <% end %>
 
   <!-- Student Selection Dropdown -->
-  <div>
-    <%= form.label :"Student", "Student", style: "display: block" %>
-    <%= form.collection_select :user_id, User.all, :id, :full_name, prompt: 'Select a student' %>
+  <div class="form-group">
+    <%= form.label :user_id, "Student", class: 'form-label' %>
+    <%= form.select :user_id, options_from_collection_for_select(User.where(role: 'student'), :id, :full_name), { prompt: "Select a Student" }, class: 'form-input' %>
   </div>
 
   <!-- Course Selection Dropdown -->
-  <div>
-    <%= form.label :course_id, "Course", style: "display: block" %>
-    <%= form.collection_select :course_id, Course.all, :id, :title, prompt: 'Select a course' %>
+  <div class="form-group">
+    <%= form.label :course_id, "Course", class: 'form-label' %>
+    <%= form.collection_select :course_id, Course.all, :id, :title, { prompt: 'Select a course' }, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.select :status, options_for_select(['Enrolled', 'Pending Approval', 'Declined']), prompt: 'Select status' %>
+  <!-- Enrollment Status -->
+  <div class="form-group">
+    <%= form.label :status, "Status", class: 'form-label' %>
+    <%= form.select :status, options_for_select(['Enrolled', 'Pending Approval', 'Declined']), { prompt: 'Select status' }, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.label :enrolled_at, style: "display: block" %>
-    <%= form.datetime_field :enrolled_at %>
+  <!-- Enrollment Date -->
+  <div class="form-group">
+    <%= form.label :enrolled_at, "Enrolled At", class: 'form-label' %>
+    <%= form.datetime_field :enrolled_at, class: 'form-input' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <!-- Submit Button -->
+  <div class="form-actions">
+    <%= form.submit 'Save Enrollment', class: 'btn-action btn-primary' %>
   </div>
+
 <% end %>

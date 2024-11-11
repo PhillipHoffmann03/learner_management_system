@@ -1,6 +1,7 @@
-<%= form_with(model: submission, local: true) do |form| %>
+<%= form_with(model: submission, local: true, class: 'assignment-form') do |form| %>
+
   <% if submission.errors.any? %>
-    <div style="color: red">
+    <div class="error-messages">
       <h2><%= pluralize(submission.errors.count, "error") %> prohibited this submission from being saved:</h2>
       <ul>
         <% submission.errors.each do |error| %>
@@ -13,78 +14,92 @@
   <!-- Student Fields -->
   <% if current_user.student? %>
 
+    <!-- Hidden User ID -->
     <div style="display: none;">
       <%= form.hidden_field :user_id, value: current_user.id %>
     </div>
 
-
-    <div>
-      <%= form.label :submission_date, style: "display: block" %>
-      <%= form.date_select :submission_date, { order: [:day, :month, :year] }, { include_blank: true } %>
+    <!-- Submission Date -->
+    <div class="form-group">
+      <%= form.label :submission_date, "Submission Date", class: 'form-label' %>
+      <%= form.date_select :submission_date, { order: [:day, :month, :year] }, { include_blank: true, class: 'form-input' } %>
     </div>
 
-
-    <div>
-      <%= form.label :student_number, style: "display: block" %>
-      <%= form.select :student_number, options_for_select([["#{current_user.first_name} #{current_user.last_name} (#{current_user.id})", current_user.id]]), {}, { disabled: true } %>
+    <!-- Student Number -->
+    <div class="form-group">
+      <%= form.label :student_number, "Student", class: 'form-label' %>
+      <%= form.select :student_number, options_for_select([["#{current_user.first_name} #{current_user.last_name} (#{current_user.id})", current_user.id]]), {}, { disabled: true, class: 'form-input' } %>
     </div>
 
-    <div>
-      <%= form.label :assignment_id, style: "display: block" %>
+    <!-- Assignment Selection -->
+    <div class="form-group">
+      <%= form.label :assignment_id, "Assignment", class: 'form-label' %>
       <% if @assignments.present? %>
-        <%= form.select :assignment_id, options_from_collection_for_select(@assignments, :id, :title), prompt: "Select an Assignment" %>
+        <%= form.select :assignment_id, options_from_collection_for_select(@assignments, :id, :title), { prompt: "Select an Assignment" }, class: 'form-input' %>
       <% else %>
-        <p>No assignments available for your enrolled courses.</p>
+        <p class="no-data">No assignments available for your enrolled courses.</p>
       <% end %>
     </div>
 
+    <!-- File Upload -->
     <div class="form-group">
-      <%= form.label :file, "Upload File", style: "display: block" %>
-      <%= form.file_field :file %>
+      <%= form.label :file, "Upload File", class: 'form-label' %>
+      <%= form.file_field :file, class: 'form-input' %>
     </div>
 
-    <div>
-      <%= form.submit "Submit" %>
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <%= form.submit "Submit", class: 'btn-action btn-primary' %>
     </div>
 
   <!-- Instructor Fields -->
   <% elsif current_user.instructor? %>
-    <div>
-      <%= form.label :student_number, style: "display: block" %>
-      <%= form.select :student_number, options_for_select([["#{current_user.first_name} #{current_user.last_name} (#{current_user.id})", current_user.id]]), {}, { disabled: true } %>
+
+    <!-- Student Number -->
+    <div class="form-group">
+      <%= form.label :student_number, "Student", class: 'form-label' %>
+      <%= form.select :student_number, options_for_select([["#{current_user.first_name} #{current_user.last_name} (#{current_user.id})", current_user.id]]), {}, { disabled: true, class: 'form-input' } %>
     </div>
 
-    <div>
-      <%= form.label :assignment_id, style: "display: block" %>
+    <!-- Assignment Selection -->
+    <div class="form-group">
+      <%= form.label :assignment_id, "Assignment", class: 'form-label' %>
       <% if @assignments.present? %>
-        <%= form.select :assignment_id, options_from_collection_for_select(@assignments, :id, :title), prompt: "Select an Assignment" %>
+        <%= form.select :assignment_id, options_from_collection_for_select(@assignments, :id, :title), { prompt: "Select an Assignment" }, class: 'form-input' %>
       <% else %>
-        <p>No assignments available for your enrolled courses.</p>
+        <p class="no-data">No assignments available for your enrolled courses.</p>
       <% end %>
     </div>
 
-    <div>
-      <%= form.label :submission_date, style: "display: block" %>
-      <%= form.datetime_field :submission_date %>
-    </div>
-
-    <div>
-      <%= form.label :grade, style: "display: block" %>
-      <%= form.text_field :grade %>
-    </div>
-
-    <div>
-      <%= form.label :feedback, style: "display: block" %>
-      <%= form.text_area :feedback %>
-    </div>
-
+    <!-- Submission Date -->
     <div class="form-group">
-      <%= form.label :file, "Upload File", style: "display: block" %>
-      <%= form.file_field :file %>
+      <%= form.label :submission_date, "Submission Date", class: 'form-label' %>
+      <%= form.datetime_field :submission_date, class: 'form-input' %>
     </div>
 
-    <div>
-      <%= form.submit "Update Submission" %>
+    <!-- Grade -->
+    <div class="form-group">
+      <%= form.label :grade, "Grade", class: 'form-label' %>
+      <%= form.text_field :grade, class: 'form-input' %>
     </div>
+
+    <!-- Feedback -->
+    <div class="form-group">
+      <%= form.label :feedback, "Feedback", class: 'form-label' %>
+      <%= form.text_area :feedback, class: 'form-input' %>
+    </div>
+
+    <!-- File Upload -->
+    <div class="form-group">
+      <%= form.label :file, "Upload File", class: 'form-label' %>
+      <%= form.file_field :file, class: 'form-input' %>
+    </div>
+
+    <!-- Update Submission Button -->
+    <div class="form-actions">
+      <%= form.submit "Update Submission", class: 'btn-action btn-primary' %>
+    </div>
+
   <% end %>
+
 <% end %>

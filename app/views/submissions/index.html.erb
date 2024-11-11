@@ -51,7 +51,7 @@
   </div>
 
 
-  <% unless current_user.guardian? %>
+  <% unless current_user.guardian? || current_user.instructor? %>
   <%= link_to 'New Submission', new_submission_path, class: 'btn-action btn-primary' %>
   <%end%>
 </div>
